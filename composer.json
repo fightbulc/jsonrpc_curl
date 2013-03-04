@@ -1,8 +1,8 @@
 {
   "name": "fightbulc/jsonrpc_curl",
   "description": "JSON-RPC CURL",
-  "homepage": "https://github.com/fightbulc/simplon_frontend",
-  "version": "0.5.1",
+  "homepage": "https://github.com/fightbulc/jsonrpc_curl",
+  "version": "0.5.0",
   "type": "library",
   "keywords": ["json-rpc-client"],
   "license": "MIT",
@@ -18,7 +18,7 @@
 
   "require": {
     "php": ">=5.3.3",
-    "fightbulc/php_curl": "dev-master"
+    "fightbulc/php_curl": "1.0.0"
   },
 
   "autoload": {
