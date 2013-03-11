@@ -59,7 +59,7 @@
     /**
      * @param $key
      * @param $value
-     * @return $this
+     * @return JsonRpcCurl
      */
     protected function _setByKey($key, $value)
     {
@@ -88,7 +88,7 @@
 
     /**
      * @param $url
-     * @return $this
+     * @return JsonRpcCurl
      */
     public function setUrl($url)
     {
@@ -111,7 +111,7 @@
 
     /**
      * @param $method
-     * @return $this
+     * @return JsonRpcCurl
      */
     protected function _setRequestMethod($method)
     {
@@ -134,7 +134,7 @@
 
     /**
      * @param $id
-     * @return $this
+     * @return JsonRpcCurl
      */
     public function setId($id)
     {
@@ -159,7 +159,7 @@
 
     /**
      * @param $method
-     * @return $this
+     * @return JsonRpcCurl
      */
     public function setMethod($method)
     {
@@ -182,7 +182,7 @@
 
     /**
      * @param $data
-     * @return $this
+     * @return JsonRpcCurl
      */
     public function setData($data)
     {
@@ -200,9 +200,10 @@
     {
       $data = $this->_getByKey('data');
 
+      // default is empty
       if($data === FALSE)
       {
-        return FALSE;
+        $data = [];
       }
 
       return array(
@@ -227,7 +228,7 @@
     /**
      * @param string $host
      * @param int $port
-     * @return $this
+     * @return JsonRpcCurl
      */
     public function setProxy($host = '127.0.0.1', $port = 8888)
     {
@@ -313,11 +314,6 @@
       if($this->_getMethod() === FALSE)
       {
         $this->_throwError('missing <method>');
-      }
-
-      if($this->_getData() === FALSE)
-      {
-        $this->_throwError('missing <data>');
       }
 
       // all cool, fetch now data
