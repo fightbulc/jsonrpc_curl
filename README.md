@@ -27,7 +27,7 @@ You can install JSONRPC CURL either via package download from github or via [Com
 ```json
 {
   "require": {
-    "fightbulc/jsonrpc_curl": "0.5.1"
+    "fightbulc/jsonrpc_curl": "0.5.2"
   }
 }
 ```
