@@ -2,9 +2,9 @@
   "name": "fightbulc/jsonrpc_curl",
   "description": "JSON-RPC CURL",
   "homepage": "https://github.com/fightbulc/jsonrpc_curl",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "type": "library",
-  "keywords": ["json-rpc-client"],
+  "keywords": ["json-rpc client"],
   "license": "MIT",
   "authors": [
     {
@@ -22,6 +22,6 @@
   },
 
   "autoload": {
-      "classmap": ["src/"]
+    "classmap": ["src/"]
   }
 }
