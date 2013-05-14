@@ -10,6 +10,7 @@
 
         /**
          * @param $message
+         *
          * @throws \Exception
          */
         protected function _throwError($message)
@@ -32,7 +33,7 @@
                 ->setReturnTransfer(TRUE);
 
             // use proxy
-            if($this->hasProxy())
+            if ($this->hasProxy())
             {
                 $curl
                     ->setProxy($this->getProxyHost())
@@ -45,8 +46,14 @@
             // decode json data
             $data = json_decode($response, TRUE);
 
+            // response exception for not json object
+            if (is_null($data))
+            {
+                $data = $response;
+            }
+
             // valid json-rpc response
-            if(! isset($data['result']))
+            if (!isset($data['result']))
             {
                 return ['error' => $data];
             }
@@ -60,6 +67,7 @@
         /**
          * @param $key
          * @param $value
+         *
          * @return JsonRpcCurl
          */
         protected function _setByKey($key, $value)
@@ -73,11 +81,12 @@
 
         /**
          * @param $key
+         *
          * @return bool
          */
         protected function _getByKey($key)
         {
-            if(! isset($this->_data[$key]))
+            if (!isset($this->_data[$key]))
             {
                 return FALSE;
             }
@@ -89,6 +98,7 @@
 
         /**
          * @param $url
+         *
          * @return JsonRpcCurl
          */
         public function setUrl($url)
@@ -112,6 +122,7 @@
 
         /**
          * @param $method
+         *
          * @return JsonRpcCurl
          */
         protected function _setRequestMethod($method)
@@ -135,6 +146,7 @@
 
         /**
          * @param $id
+         *
          * @return JsonRpcCurl
          */
         public function setId($id)
@@ -170,6 +182,7 @@
 
         /**
          * @param $method
+         *
          * @return JsonRpcCurl
          */
         public function setMethod($method)
@@ -193,6 +206,7 @@
 
         /**
          * @param $data
+         *
          * @return JsonRpcCurl
          */
         public function setData($data)
@@ -212,7 +226,7 @@
             $data = $this->_getByKey('data');
 
             // default is empty
-            if($data === FALSE)
+            if ($data === FALSE)
             {
                 $data = [];
             }
@@ -240,11 +254,12 @@
         /**
          * @param string $host
          * @param int $port
+         *
          * @return JsonRpcCurl
          */
         public function setProxy($host = '127.0.0.1', $port = 8888)
         {
-            if(isset($host) && isset($port))
+            if (isset($host) && isset($port))
             {
                 $this->_setByKey('useProxy', TRUE);
                 $this->_setByKey('proxyHost', $host);
@@ -263,7 +278,7 @@
         {
             $useProxy = $this->_getByKey('useProxy');
 
-            if(isset($useProxy))
+            if (isset($useProxy))
             {
                 return TRUE;
             }
@@ -280,7 +295,7 @@
         {
             $host = $this->_getByKey('proxyHost');
 
-            if(isset($host))
+            if (isset($host))
             {
                 return $host;
             }
@@ -297,7 +312,7 @@
         {
             $port = $this->_getByKey('proxyPort');
 
-            if(isset($port))
+            if (isset($port))
             {
                 return $port;
             }
@@ -313,17 +328,17 @@
          */
         public function send()
         {
-            if($this->_getUrl() === FALSE)
+            if ($this->_getUrl() === FALSE)
             {
                 $this->_throwError('missing <url>');
             }
 
-            if($this->_getId() === FALSE)
+            if ($this->_getId() === FALSE)
             {
                 $this->_throwError('missing <id>');
             }
 
-            if($this->_getMethod() === FALSE)
+            if ($this->_getMethod() === FALSE)
             {
                 $this->_throwError('missing <method>');
             }
